@@ -16,7 +16,7 @@ class App extends Component {
         </header>
         <Intro message = "Here is a Simple Property . Here you can find of most loved tv Seires"/> 
         <Series />
-        <SeriesList />
+        {/* <SeriesList /> */}
       </div>
       
     );

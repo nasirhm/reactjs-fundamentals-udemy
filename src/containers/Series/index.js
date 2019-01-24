@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SeriesList from '../../components/SeriesList';
 import Loader from '../../components/Loader';
-
+import Intro from '../../components/Intro';
 
 class Series extends Component{
     state = {
@@ -39,6 +39,7 @@ this.setState({seriesName : e.target.value, isFetching: true});
         return(
             //  <div>The Length of Series array is : {this.state.series.length}
             <div>
+                <Intro message = "Here is a Simple Property . Here you can find of most loved tv Seires"/> 
              <div>
                  <input value = {seriesName} type="text" onChange={this.onSeriesInputChange} />
              </div>

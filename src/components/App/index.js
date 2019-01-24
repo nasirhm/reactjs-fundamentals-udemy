@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 import './App.css';
 import Main from '../Main';
-import SeriesList from '../SeriesList';
-
 
 class App extends Component {
  

@@ -3,23 +3,55 @@ import SeriesList from '../../components/SeriesList';
 
 class Series extends Component{
     state = {
-        series : []
+        series : [],
+        isFetching : false,
+        seriesName : ''
       }
-      componentDidMount(){
-        // const series = ["Vikings", "Big Bang Theory", "Game of Thrones", "Narcos", "Friends"];
-        // setTimeout(() => {
-        //  // this.setState({series : series})
-        //  //If the Name is same you can write one time and it would work as a charm =) 
-        //  this.setState({series})
-        // }, 2000
-        fetch('http://api.tvmaze.com/search/shows?q=Vikings')
-          .then((response) => response.json())
-         // .then(json => console.log(json));
-        .then(json => this.setState({series:json}))
-      }
+    //   componentDidMount(){
+    //     // const series = ["Vikings", "Big Bang Theory", "Game of Thrones", "Narcos", "Friends"];
+    //     // setTimeout(() => {
+    //     //  // this.setState({series : series})
+    //     //  //If the Name is same you can write one time and it would work as a charm =) 
+    //     //  this.setState({series})
+    //     // }, 2000
+    //      }
+      onSeriesInputChange = e =>{
+    //       console.log(e);
+    //       console.log(e.target.value);
+//     fetch('http://api.tvmaze.com/search/shows?q=Vikings')
+//     .then((response) => response.json())
+//    // .then(json => console.log(json));
+//   .then(json => this.setState({series:json}))
+
+// Added ` `
+this.setState({seriesName : e.target.value, isFetching: true});
+  fetch(`http://api.tvmaze.com/search/shows?q=${e.target.value}`)
+  .then((response) => response.json())
+ // .then(json => console.log(json));
+.then(json => this.setState({series:json, isFetching:false}))
+
+}
+
     render(){
+        const {series, seriesName, isFetching} = this.state;
         return(
-            <div>The Length of Series array is : {this.state.series.length}
+            //  <div>The Length of Series array is : {this.state.series.length}
+            <div>
+             <div>
+                 <input value = {seriesName} type="text" onChange={this.onSeriesInputChange} />
+             </div>
+            
+            {
+            series.length === 0 && seriesName === '' 
+            &&
+            <p>Please enter Series name into Input</p>
+            }
+            
+            {
+                series.length === 0 && seriesName.trim !== '' 
+                &&
+                <p>No TV result found</p> 
+            }
             <SeriesList List={this.state.series} />
             </div>
         )

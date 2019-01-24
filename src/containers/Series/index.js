@@ -42,13 +42,13 @@ this.setState({seriesName : e.target.value, isFetching: true});
              </div>
             
             {
-            series.length === 0 && seriesName === '' 
+            !isFetching && series.length === 0 && seriesName === '' 
             &&
             <p>Please enter Series name into Input</p>
             }
             
             {
-                series.length === 0 && seriesName.trim !== '' 
+                !isFetching && series.length === 0 && seriesName.trim !== '' 
                 &&
                 <p>No TV result found</p> 
             }

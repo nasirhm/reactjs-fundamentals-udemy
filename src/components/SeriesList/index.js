@@ -3,7 +3,7 @@ import React from 'react';
 const SeriesList = (props) => {
     return(
         <div>
-            <ul>
+            <ul className="series-list">
             <li>
                 {props.List.map(series => (
                     <li>{series.show.name}</li>

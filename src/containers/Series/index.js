@@ -52,7 +52,14 @@ this.setState({seriesName : e.target.value, isFetching: true});
                 &&
                 <p>No TV result found</p> 
             }
-            <SeriesList List={this.state.series} />
+
+            {
+                isFetching && <p>Loading...</p>
+            }
+            {
+                !isFetching && <SeriesList List={this.state.series} />
+            }
+            
             </div>
         )
     }
